@@ -1,0 +1,77 @@
+.heroSection {
+  min-height: 100vh;
+  padding-top: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.svgOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.connectorPath {
+  fill: none;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+/* 2x2 grid so all 4 cards are visible */
+.serviceCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.serviceCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 115, 0, 0.08);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, transform 0.3s;
+  min-width: 0;
+}
+
+.serviceCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cardLabel {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-family: var(--font-inter);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardActive {
+  transform: translateX(4px) !important;
+  box-shadow: 0 0 0 2px rgba(255,115,0,0.3), 0 8px 24px rgba(0,0,0,0.12) !important;
+}
