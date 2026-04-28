@@ -1,0 +1,280 @@
+.widget {
+  --btn1: 380px;
+  --btn2: 240px;
+  --btn3: 110px;
+  --ball-size: 7px;
+  --smooth: 500ms;
+  position: relative;
+  width: calc(var(--btn1) + 120px);
+  height: calc(var(--btn1) + 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+  transition: transform var(--smooth) cubic-bezier(0.22, 0.9, 0.35, 1),
+    opacity var(--smooth);
+  pointer-events: auto;
+}
+
+.btn1 {
+  width: var(--btn1);
+  height: var(--btn1);
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  z-index: 1;
+}
+
+.btn2 {
+  width: var(--btn2);
+  height: var(--btn2);
+  border: 2px solid var(--secondary-color);
+  background: transparent;
+  z-index: 2;
+}
+
+.btn3 {
+  width: var(--btn3);
+  height: var(--btn3);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  z-index: 3;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px;
+  text-align: center;
+  transform-origin: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255, 115, 0, 0.4);
+  overflow: hidden;
+  white-space: nowrap;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 115, 0, 0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 50px rgba(255, 115, 0, 0.5); transform: scale(1.05); }
+}
+
+.icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  transform-origin: center center;
+  animation: rotateIcon 2s linear infinite;
+  font-size: 14px;
+}
+
+@keyframes rotateIcon {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textBlock {
+  position: absolute;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background 200ms, color 200ms, opacity 400ms ease;
+  white-space: nowrap;
+}
+
+.tbWeb {
+  top: calc(50% - var(--btn1) / 2 - 35px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tbMobile {
+  top: calc(50% + var(--btn1) / 2 + 15px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tbUx {
+  left: calc(50% - var(--btn2) / 2 - 65px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tbErp {
+  left: calc(50% + var(--btn2) / 2 + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.touched {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.orbit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.orbitCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbitCircleB1 {
+  width: var(--btn1);
+  height: var(--btn1);
+}
+
+.orbitCircleB2 {
+  width: var(--btn2);
+  height: var(--btn2);
+}
+
+.rotator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  animation: spin 6s linear infinite;
+  pointer-events: none;
+}
+
+.rotatorSlow { animation-duration: 10s; }
+.rotatorFast { animation-duration: 14s; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ball {
+  position: absolute;
+  top: calc(50% - var(--btn1) / 2 - var(--ball-size) / 2);
+  left: 50%;
+  width: var(--ball-size);
+  height: var(--ball-size);
+  margin-left: calc(-1 * var(--ball-size) / 2);
+  border-radius: 50%;
+  background: var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.ballB2 {
+  top: calc(50% - var(--btn2) / 2 - var(--ball-size) / 2);
+}
+
+.scaledZero {
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scaledFull {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slices {
+  position: absolute;
+  z-index: 60;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -30%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.slice {
+  width: 300px;
+  height: 60px;
+  background: white;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 1; /* Slice visibility is handled by .sliceVisible */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--glass-border);
+  padding: 12px 20px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: transform 500ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    opacity 500ms ease, margin-left 500ms ease;
+}
+
+.sliceIcon {
+  margin-right: 12px;
+  font-size: 24px;
+}
+
+.sliceVisible {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.sliceHiding {
+  opacity: 0 !important;
+  transform: translateX(60px) !important;
+  margin-left: 0px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.hideCircles .btn1,
+.hideCircles .btn2,
+.hideCircles .btn3,
+.hideCircles .textBlock {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
